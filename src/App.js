@@ -46,44 +46,57 @@ function App() {
         <input type="file" onChange={(e)=> handleFile(e)} />
       </div>
 
-      <div className="columns">
+      
+      <div 
+      // className="columns"
+      >
+        <table>
+          <thead>
+            <tr key={"23452345"}>
+              {columns.map((header)=>(
+              <th  >
+                {header}
+              </th>
+              ))}
+            </tr>
+          </thead>
+
+
+
+          <tbody>
+            {/* Map an Array of rows */}
+            {rows.map((row)=>(
+              <tr key= "1234123" className="" >
+                  {
+                    // Map an array of a row 
+                    row.map((cell)=>(
+                  // IF a cell includes http then make it a url anchor. otherwise   render just a plain string
+                  <td>
+                  { cell.toString().includes("http")?
+                      <a href={`${cell}`}>
+                        {cell}
+                      </a>
+                    : 
+                      <p className="">
+                        {
+                        cell
+                        }
+                      </p>
+                      }
+                  </td>
+                      ))
+                  }
+                  
+              </tr>
+                
+            ))}
+        </tbody>
+
+
+        </table>
+      </div>
         
-          {columns.map((header)=>(
-            <h2  >
-              {header}
-            </h2>
-          ))}
-
       </div>
-
-        {/* Rows */}
-      <div className="" >
-
-      {/* Map an Array of rows */}
-        {rows.map((row)=>(
-          <div className="rows" >
-{
-          // Map an array of a row 
-          row.map((cell)=>(
-
-            // IF a cell includes http then make it a url anchor. otherwise render just a plain string
-            cell.toString().includes("http")?
-              <a href={`${cell}`}>
-                {cell}
-              </a>
-              : 
-              <p className="rows">
-                {
-                  cell
-                }
-              </p>
-            
-          ))}
-          </div>
-            
-        ))}
-      </div>
-    </div>
   );
 }
 
